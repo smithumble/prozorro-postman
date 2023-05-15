@@ -4304,7 +4304,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b4e1885a-46c3-44e6-a674-871fe8b7f2d7",
+								"id": "0558e273-be09-4cdd-bdc3-16ab44125836",
 								"type": "text/javascript",
 								"exec": [
 									"// Configuration",
@@ -4345,20 +4345,21 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ddb6c07f-600d-48ca-b4ba-8e48f6529eb2",
+								"id": "89897598-81f9-4718-bfcf-1981771ae445",
 								"type": "text/javascript",
 								"exec": [
 									"utils.tests = {}",
 									"",
-									"utils.tests.testStatusCode = (pm, postman, code) => {",
-									"",
-									"}",
-									"",
-									"utils.tests.testTenderCreate = (pm, postman) => {",
+									"utils.tests.testStatusCode = (pm, postman, code, callback) => {",
 									"",
 									"    pm.test(`Статус код 201`, () => {",
 									"        pm.expect(pm.response.code).to.eql(201);",
 									"    });",
+									"",
+									"    callback();",
+									"}",
+									"",
+									"utils.tests.testTenderCreate = (pm, postman) => {",
 									"",
 									"    pm.test(\"Поля body присутні\", () => {",
 									"        pm.expect(pm.response.json()).to.have.all.keys([\"data\", \"config\", \"access\"]);",
