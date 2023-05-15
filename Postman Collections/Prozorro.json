@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "66a76d00-523e-472c-9dd6-237c3e7d0cb6",
+				"id": "efec688e-440b-4181-8a6e-b974ef55bbae",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7068,7 +7068,7 @@
 					"            pm.environment.set(name, src);",
 					"        })",
 					"    }",
-					"    eval(src)();",
+					"    new Function(src)();",
 					"}",
 					"",
 					"moment = require(\"moment\");",
@@ -7282,7 +7282,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "8e003901-404d-4ea1-9f4e-4cb5f3b60265",
+				"id": "794de03a-574b-4538-9bb4-ed90aca5effb",
 				"type": "text/javascript",
 				"exec": [
 					""
