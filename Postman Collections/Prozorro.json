@@ -7053,22 +7053,24 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "d67934ca-ad6a-47e9-8d19-e6db8b9cc47e",
+				"id": "1b052ad0-fdec-40ab-b4db-8aeb13ce85da",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
 					"////////////////////// DEPS ///////////////////////",
 					"///////////////////////////////////////////////////",
 					"",
-					"const load = (name, url) => {",
+					"const load = (name, url, callback) => {",
 					"    let src = pm.environment.get(name);",
 					"    if (src !== undefined) {",
 					"        (new Function(src))();",
+					"        callback();",
 					"    } else {",
 					"        pm.sendRequest(url, (err, res) => {",
 					"            src = res.text();",
 					"            pm.environment.set(name, src);",
 					"            (new Function(src))();",
+					"            callback()",
 					"        })",
 					"    }",
 					"}",
@@ -7284,7 +7286,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "cea2be45-e5ba-4ac2-b60b-99b1ade486ad",
+				"id": "6599a873-d74f-4966-b3c3-fc9353b40f61",
 				"type": "text/javascript",
 				"exec": [
 					""
