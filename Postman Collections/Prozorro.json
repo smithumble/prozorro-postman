@@ -29,6 +29,7 @@
 													"",
 													"    utils.tests.testTenderCreate(pm, postman);",
 													"    utils.helpers.setNextRequest(pm, postman);",
+													"    ",
 													"    utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
 													"    ",
 													"});",
