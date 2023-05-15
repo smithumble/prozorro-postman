@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6ba92f17-e5ca-4da7-9d10-59e48a35b748",
+				"id": "77d744ac-8824-4991-84c9-7b350d7f5e11",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7064,7 +7064,7 @@
 					"    let src = pm.environment.get(name);",
 					"    if (!src) {",
 					"        pm.sendRequest(url, (err, res) => {",
-					"            src = res.text()",
+					"            src = res.text();",
 					"            pm.environment.set(name, src);",
 					"        })",
 					"    }",
@@ -7282,7 +7282,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "c5daff24-c29c-4b40-8fef-558d4abd42d6",
+				"id": "75f29a46-757b-445a-bb28-f34439b1f65b",
 				"type": "text/javascript",
 				"exec": [
 					""
