@@ -27,10 +27,9 @@
 													"    pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
 													"    pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
 													"",
+													"    utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
 													"    utils.tests.testTenderCreate(pm, postman);",
 													"    utils.helpers.setNextRequest(pm, postman);",
-													"    ",
-													"    utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
 													"    ",
 													"});",
 													""
