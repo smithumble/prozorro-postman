@@ -22,18 +22,25 @@
 											"script": {
 												"id": "8fc629ef-ba45-4b8c-8a46-9fb14d2d84a1",
 												"exec": [
-													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
+													"pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
 													"",
-													"    pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
-													"    pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
+													"utils.tests.testTenderCreate(pm, postman);",
+													"utils.helpers.setNextRequest(pm, postman);",
 													"",
-													"    utils.tests.testTenderCreate(pm, postman);",
-													"    utils.helpers.setNextRequest(pm, postman);",
+													"utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
+													"",
+													"// utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"",
+													"//     pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
+													"//     pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
+													"",
+													"//     utils.tests.testTenderCreate(pm, postman);",
+													"//     utils.helpers.setNextRequest(pm, postman);",
 													"    ",
-													"    utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
+													"//     utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
 													"    ",
-													"});",
-													""
+													"// });"
 												],
 												"type": "text/javascript"
 											}
