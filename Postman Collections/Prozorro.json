@@ -1145,6 +1145,7 @@
 													"        return awards.length !== 0",
 													"    },",
 													"    (pm, postman) => {",
+													"        ",
 													"        var awards = pm.response.json().data.awards || [];",
 													"",
 													"        pm.test(`Кількість авардів більше 0 (${awards.length})`, () => {",
