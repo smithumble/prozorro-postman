@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "1b052ad0-fdec-40ab-b4db-8aeb13ce85da",
+				"id": "9ab04d56-52f2-4971-9707-abd92d0382f9",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7070,7 +7070,7 @@
 					"            src = res.text();",
 					"            pm.environment.set(name, src);",
 					"            (new Function(src))();",
-					"            callback()",
+					"            callback();",
 					"        })",
 					"    }",
 					"}",
@@ -7286,7 +7286,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "6599a873-d74f-4966-b3c3-fc9353b40f61",
+				"id": "42d4871b-a0af-445d-9802-b4397214b0bd",
 				"type": "text/javascript",
 				"exec": [
 					""
