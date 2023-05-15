@@ -4304,7 +4304,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "9dbc8133-815d-467c-979e-f3698b606c61",
+								"id": "e318b1f4-f848-4100-b043-0c74b3cf9132",
 								"type": "text/javascript",
 								"exec": [
 									"// Configuration",
@@ -4345,7 +4345,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f62d23e5-9253-4db1-a925-85e4b0f663ce",
+								"id": "a148fa5e-c6aa-4f4e-a1a3-1e93422f5ad1",
 								"type": "text/javascript",
 								"exec": [
 									"utils.tests = {}",
@@ -4355,8 +4355,6 @@
 									"    pm.test(`Статус код 201`, () => {",
 									"        pm.expect(pm.response.code).to.eql(201);",
 									"    });",
-									"",
-									"    if (pm.response.code !== 201) return;",
 									"",
 									"    pm.test(\"Поля body присутні\", () => {",
 									"        pm.expect(pm.response.json()).to.have.all.keys([\"data\", \"config\", \"access\"]);",
