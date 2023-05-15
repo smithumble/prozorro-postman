@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6c70e573-5199-435a-b4c6-416837659f01",
+				"id": "4e591a0f-f1ce-4234-9038-6b2d228609ad",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7068,10 +7068,10 @@
 					"            pm.environment.set(name, src);",
 					"        })",
 					"    }",
-					"    eval(src);",
+					"    let (src)();",
 					"}",
 					"",
-					"let moment = require(\"moment\");",
+					"moment = require(\"moment\");",
 					"load(\"momenttz\", \"https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-2012-2022.min.js\")",
 					"",
 					"///////////////////////////////////////////////////",
@@ -7282,7 +7282,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "23d4916c-115b-4357-a3b8-d7de579df9bc",
+				"id": "ba0f89ca-bb9f-461d-9c1c-fdb2185f3089",
 				"type": "text/javascript",
 				"exec": [
 					""
