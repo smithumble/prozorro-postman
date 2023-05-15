@@ -30,18 +30,7 @@
 													"utils.helpers.setNextRequest(pm, postman);",
 													"",
 													"utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
-													"",
-													"// utils.helpers.checkStatusCode(pm, postman, 201, () => {",
-													"",
-													"//     pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
-													"//     pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
-													"",
-													"//     utils.tests.testTenderCreate(pm, postman);",
-													"//     utils.helpers.setNextRequest(pm, postman);",
-													"    ",
-													"//     utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
-													"    ",
-													"// });"
+													""
 												],
 												"type": "text/javascript"
 											}
@@ -6215,9 +6204,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [
-										"/Users/smithumble/Dev/prozorro/dev-env/api/src/openprocurement.api/__init__.py"
-									]
+									"src": "/Users/smithumble/Dev/prozorro/dev-env/api/src/openprocurement.api/__init__.py"
 								}
 							]
 						},
@@ -6280,9 +6267,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [
-										"/Users/smithumble/Downloads/wait"
-									]
+									"src": "/Users/smithumble/Downloads/wait"
 								}
 							]
 						},
@@ -6340,9 +6325,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [
-										"/Users/smithumble/Downloads/wait"
-									]
+									"src": "/Users/smithumble/Downloads/wait"
 								}
 							]
 						},
@@ -8192,9 +8175,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [
-										"/Users/smithumble/Downloads/file.txt"
-									]
+									"src": "/Users/smithumble/Downloads/file.txt"
 								}
 							]
 						},
@@ -8285,9 +8266,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [
-										"/Users/smithumble/Downloads/file.txt"
-									]
+									"src": "/Users/smithumble/Downloads/file.txt"
 								}
 							]
 						},
@@ -8333,9 +8312,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [
-										"/Users/smithumble/Downloads/26590034554364J1499202100800129811020202659.XML.p7s"
-									]
+									"src": "/Users/smithumble/Downloads/26590034554364J1499202100800129811020202659.XML.p7s"
 								}
 							]
 						},
