@@ -22,7 +22,7 @@
 											"script": {
 												"id": "8fc629ef-ba45-4b8c-8a46-9fb14d2d84a1",
 												"exec": [
-													"if (!utils.tests.testStatusCode(pm, postman, 201)) return;",
+													"if (!utils.helpers.checkStatusCode(pm, postman, 201)) return;",
 													"",
 													"pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
 													"pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
@@ -7066,7 +7066,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "9f02eab3-0e8b-404e-a63d-3e5b98411826",
+				"id": "120ba3ac-e2c1-487e-8989-ed326abab515",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7136,8 +7136,8 @@
 					"    });",
 					"",
 					"    if (pm.response.code === code) {",
-					"        callback(pm, postman);",
-					"        return true",
+					"        if (callback) callback(pm, postman);",
+					"        return true;",
 					"    }",
 					"",
 					"    return false;",
@@ -7326,7 +7326,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "960d4eb8-41ca-468c-ae3b-8598cde38660",
+				"id": "754fcfbb-9579-4cd7-a241-6c9b0b45d17b",
 				"type": "text/javascript",
 				"exec": [
 					""
