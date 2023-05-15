@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "4d253989-1884-444c-b104-99e3304b6537",
+				"id": "6ba92f17-e5ca-4da7-9d10-59e48a35b748",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7061,12 +7061,14 @@
 					"///////////////////////////////////////////////////",
 					"",
 					"const load = (name, url) => {",
-					"    if (!pm.environment.get(name)) {",
+					"    let src = pm.environment.get(name);",
+					"    if (!src) {",
 					"        pm.sendRequest(url, (err, res) => {",
-					"            pm.environment.set(name, res.text());",
+					"            src = res.text()",
+					"            pm.environment.set(name, src);",
 					"        })",
 					"    }",
-					"    (new Function(pm.environment.get(name)))();",
+					"    (new Function(src))();",
 					"}",
 					"",
 					"moment = require(\"moment\");",
@@ -7280,7 +7282,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "be7057c0-7f89-4bb7-b3c8-b1edfbb4f145",
+				"id": "c5daff24-c29c-4b40-8fef-558d4abd42d6",
 				"type": "text/javascript",
 				"exec": [
 					""
