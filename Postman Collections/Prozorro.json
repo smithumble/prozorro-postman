@@ -7066,7 +7066,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "120ba3ac-e2c1-487e-8989-ed326abab515",
+				"id": "a10268ba-6906-4339-8503-32943a862d77",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7129,18 +7129,19 @@
 					"    postman.setNextRequest(nextRequest);",
 					"}",
 					"",
-					"utils.helpers.checkStatusCode = (pm, postman, code, callback) => {",
+					"utils.helpers.checkStatusCode = (pm, postman, code, successCallback, failCallback) => {",
 					"",
 					"    pm.test(`Статус код ${code}`, () => {",
 					"        pm.expect(pm.response.code).to.eql(code);",
 					"    });",
 					"",
-					"    if (pm.response.code === code) {",
-					"        if (callback) callback(pm, postman);",
-					"        return true;",
+					"    if (pm.response.code !== code) {",
+					"        if (failCallback) failCallback(pm, postman);",
+					"        return false;",
 					"    }",
 					"",
-					"    return false;",
+					"    if (successCallback) successCallback(pm, postman);",
+					"    return true;",
 					"}",
 					"",
 					"utils.helpers.calculateEndDate = (startDate, days, accelerator, timezone) => {",
@@ -7326,7 +7327,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "754fcfbb-9579-4cd7-a241-6c9b0b45d17b",
+				"id": "75526598-0b59-413d-b074-cb3089b68394",
 				"type": "text/javascript",
 				"exec": [
 					""
