@@ -1953,15 +1953,14 @@
 											"script": {
 												"id": "8fc629ef-ba45-4b8c-8a46-9fb14d2d84a1",
 												"exec": [
-													"utils.tests.testStatusCode(pm, postman, 201, () => {",
-													"    pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
-													"    pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
+													"if (!utils.tests.testStatusCode(pm, postman, 201)) return;",
 													"",
-													"    utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
-													"    utils.tests.testTenderCreate(pm, postman);",
-													"    utils.helpers.setNextRequest(pm, postman);",
-													"})",
+													"pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
+													"pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
 													"",
+													"utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
+													"utils.tests.testTenderCreate(pm, postman);",
+													"utils.helpers.setNextRequest(pm, postman);",
 													""
 												],
 												"type": "text/javascript"
