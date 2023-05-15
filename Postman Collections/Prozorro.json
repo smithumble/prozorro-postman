@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "2b1ea410-4978-4f8f-96ce-82c0e491e489",
+				"id": "427e41d3-f017-494c-8dc1-dfb3cee71eac",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7070,12 +7070,12 @@
 					"const load = (name, url, callback) => {",
 					"    let src = pm.environment.get(name);",
 					"    if (src !== undefined) {",
+					"        iife(src, callback);",
 					"    } else {",
 					"        pm.sendRequest(url, (err, res) => {",
 					"            src = res.text();",
 					"            pm.environment.set(name, src);",
-					"            (new Function(src))();",
-					"            if (callback) {callback()};",
+					"            iife(src, callback);",
 					"        })",
 					"    }",
 					"}",
@@ -7299,7 +7299,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "52335b04-4c55-4f14-ba21-5914c22c1c97",
+				"id": "cf5a1523-424b-40b5-aff9-fec4fd06d328",
 				"type": "text/javascript",
 				"exec": [
 					""
