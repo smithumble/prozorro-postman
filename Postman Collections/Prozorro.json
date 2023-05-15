@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6d023c61-83ed-464a-bebf-87df5ca63866",
+				"id": "2ec11b13-9acd-4723-b2ea-3b83847c394b",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7071,7 +7071,6 @@
 					"    (new Function(src))();",
 					"}",
 					"",
-					"// moment = require(\"moment\");",
 					"load(\"moment\", \"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js\");",
 					"load(\"moment-timezone\", \"https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-10-year-range.min.js\");",
 					"",
@@ -7283,7 +7282,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "74ca47eb-146a-414a-a231-96afaf8c91cb",
+				"id": "b65d15c0-4616-4d04-88e3-3015adeb9d6a",
 				"type": "text/javascript",
 				"exec": [
 					""
