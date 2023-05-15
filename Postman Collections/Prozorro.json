@@ -30,7 +30,6 @@
 													"    utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
 													"    utils.tests.testTenderCreate(pm, postman);",
 													"    utils.helpers.setNextRequest(pm, postman);",
-													"    ",
 													"});",
 													""
 												],
