@@ -4304,7 +4304,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e318b1f4-f848-4100-b043-0c74b3cf9132",
+								"id": "f23f9da5-dae9-49b7-9b51-455e09df7db2",
 								"type": "text/javascript",
 								"exec": [
 									"// Configuration",
@@ -4345,10 +4345,14 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a148fa5e-c6aa-4f4e-a1a3-1e93422f5ad1",
+								"id": "fae8c945-850b-4edb-bda0-ae84ccbbe340",
 								"type": "text/javascript",
 								"exec": [
 									"utils.tests = {}",
+									"",
+									"utils.tests.testStatusCode = (pm, postman) => {",
+									"    ",
+									"}",
 									"",
 									"utils.tests.testTenderCreate = (pm, postman) => {",
 									"",
