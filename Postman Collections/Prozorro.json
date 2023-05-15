@@ -4307,7 +4307,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b3e169d8-1f9f-4e9f-b416-9720bf29d947",
+								"id": "9d6aea00-2417-4fa5-9140-00b76c23d0ae",
 								"type": "text/javascript",
 								"exec": [
 									"// Configuration",
@@ -4348,18 +4348,20 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "618781f1-34f6-46fb-8e46-51870866e82b",
+								"id": "97fa1fc3-0066-4967-b307-46522b313f2b",
 								"type": "text/javascript",
 								"exec": [
 									"utils.tests = {}",
 									"",
 									"utils.tests.testStatusCode = (pm, postman, code, callback) => {",
 									"",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
+									"    pm.test(`Статус код ${code}`, () => {",
+									"        pm.expect(pm.response.code).to.eql(code);",
 									"    });",
 									"",
-									"    callback(pm, postman);",
+									"    if (pm.response.code === code) {",
+									"        callback(pm, postman);",
+									"    }",
 									"}",
 									"",
 									"utils.tests.testTenderCreate = (pm, postman) => {",
