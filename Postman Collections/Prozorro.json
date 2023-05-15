@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "3d3ffecf-e90f-487c-a64f-00924ca35168",
+				"id": "d67934ca-ad6a-47e9-8d19-e6db8b9cc47e",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7062,13 +7062,15 @@
 					"",
 					"const load = (name, url) => {",
 					"    let src = pm.environment.get(name);",
-					"    if (src === undefined) {",
+					"    if (src !== undefined) {",
+					"        (new Function(src))();",
+					"    } else {",
 					"        pm.sendRequest(url, (err, res) => {",
 					"            src = res.text();",
 					"            pm.environment.set(name, src);",
+					"            (new Function(src))();",
 					"        })",
 					"    }",
-					"    (new Function(src))();",
 					"}",
 					"",
 					"load(\"moment\", \"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js\");",
@@ -7282,7 +7284,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "68756c61-9361-4393-97f4-9786fcdc99ee",
+				"id": "cea2be45-e5ba-4ac2-b60b-99b1ade486ad",
 				"type": "text/javascript",
 				"exec": [
 					""
