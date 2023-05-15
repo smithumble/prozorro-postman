@@ -22,7 +22,7 @@
 											"script": {
 												"id": "8fc629ef-ba45-4b8c-8a46-9fb14d2d84a1",
 												"exec": [
-													"if (!utils.tests.testStatusCode(pm, postman, 201)) return;",
+													"if (!utils.helpers.checkStatusCode(pm, postman, 201)) return;",
 													"",
 													"pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
 													"pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
@@ -7066,7 +7066,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "427e41d3-f017-494c-8dc1-dfb3cee71eac",
+				"id": "9f02eab3-0e8b-404e-a63d-3e5b98411826",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7127,6 +7127,20 @@
 					"",
 					"    const nextRequest = findNextString(utils.order, pm.info.requestName);",
 					"    postman.setNextRequest(nextRequest);",
+					"}",
+					"",
+					"utils.helpers.checkStatusCode = (pm, postman, code, callback) => {",
+					"",
+					"    pm.test(`Статус код ${code}`, () => {",
+					"        pm.expect(pm.response.code).to.eql(code);",
+					"    });",
+					"",
+					"    if (pm.response.code === code) {",
+					"        callback(pm, postman);",
+					"        return true",
+					"    }",
+					"",
+					"    return false;",
 					"}",
 					"",
 					"utils.helpers.calculateEndDate = (startDate, days, accelerator, timezone) => {",
@@ -7312,7 +7326,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "cf5a1523-424b-40b5-aff9-fec4fd06d328",
+				"id": "960d4eb8-41ca-468c-ae3b-8598cde38660",
 				"type": "text/javascript",
 				"exec": [
 					""
