@@ -4304,7 +4304,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0558e273-be09-4cdd-bdc3-16ab44125836",
+								"id": "b3e169d8-1f9f-4e9f-b416-9720bf29d947",
 								"type": "text/javascript",
 								"exec": [
 									"// Configuration",
@@ -4345,7 +4345,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "89897598-81f9-4718-bfcf-1981771ae445",
+								"id": "618781f1-34f6-46fb-8e46-51870866e82b",
 								"type": "text/javascript",
 								"exec": [
 									"utils.tests = {}",
@@ -4356,7 +4356,7 @@
 									"        pm.expect(pm.response.code).to.eql(201);",
 									"    });",
 									"",
-									"    callback();",
+									"    callback(pm, postman);",
 									"}",
 									"",
 									"utils.tests.testTenderCreate = (pm, postman) => {",
