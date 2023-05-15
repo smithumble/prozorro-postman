@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "9ab04d56-52f2-4971-9707-abd92d0382f9",
+				"id": "35dd6817-45ff-41e7-b19c-b7f56a01b31b",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7063,20 +7063,30 @@
 					"const load = (name, url, callback) => {",
 					"    let src = pm.environment.get(name);",
 					"    if (src !== undefined) {",
-					"        (new Function(src))();",
 					"        callback();",
+					"        (new Function(src))();",
 					"    } else {",
 					"        pm.sendRequest(url, (err, res) => {",
 					"            src = res.text();",
 					"            pm.environment.set(name, src);",
-					"            (new Function(src))();",
 					"            callback();",
+					"            (new Function(src))();",
 					"        })",
 					"    }",
 					"}",
 					"",
+					"load(",
+					"    \"moment-timezone\",",
+					"    \"https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-10-year-range.min.js\",",
+					"    () => {",
+					"        load(",
+					"            \"moment-timezone\",",
+					"            \"https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-10-year-range.min.js\",",
+					"        );",
+					"    }",
+					");",
+					"",
 					"load(\"moment\", \"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js\");",
-					"load(\"moment-timezone\", \"https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-10-year-range.min.js\");",
 					"",
 					"///////////////////////////////////////////////////",
 					"////////////////////// UTILS //////////////////////",
@@ -7286,7 +7296,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "42d4871b-a0af-445d-9802-b4397214b0bd",
+				"id": "c1e29ad4-6c1c-4c38-bed1-c3c9acbb1bfa",
 				"type": "text/javascript",
 				"exec": [
 					""
