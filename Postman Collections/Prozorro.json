@@ -2376,7 +2376,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "9d6aea00-2417-4fa5-9140-00b76c23d0ae",
+								"id": "01966af1-2212-46ea-9c50-ec23155e3a6c",
 								"type": "text/javascript",
 								"exec": [
 									"// Configuration",
@@ -2417,7 +2417,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "97fa1fc3-0066-4967-b307-46522b313f2b",
+								"id": "f122d663-17ad-43f4-9c32-881f1e9d7e6c",
 								"type": "text/javascript",
 								"exec": [
 									"utils.tests = {}",
@@ -2428,9 +2428,13 @@
 									"        pm.expect(pm.response.code).to.eql(code);",
 									"    });",
 									"",
-									"    if (pm.response.code === code) {",
+									"    const value = pm.response.code === code;",
+									"",
+									"    if (value) {",
 									"        callback(pm, postman);",
 									"    }",
+									"",
+									"    return value;",
 									"}",
 									"",
 									"utils.tests.testTenderCreate = (pm, postman) => {",
