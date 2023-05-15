@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5b3f80d1-5819-47ed-a4a4-b7a55d90062c",
+				"id": "eb2d3b5d-52f8-4f9c-a64f-56a0af39f2d5",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7069,8 +7069,8 @@
 					"    (new Function(pm.environment.get(name)))();",
 					"}",
 					"",
-					"moment = require(\"moment\");",
-					"load(\"momenttz\", \"https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-2012-2022.min.js)",
+					"let moment = require(\"moment\");",
+					"load(\"momenttz\", \"https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-2012-2022.min.js\")",
 					"",
 					"///////////////////////////////////////////////////",
 					"////////////////////// UTILS //////////////////////",
@@ -7280,7 +7280,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "86e3b05e-8f68-46a5-a5eb-ecb92e5c87de",
+				"id": "0c8b0868-4b54-40d4-95fa-5efbfab1e844",
 				"type": "text/javascript",
 				"exec": [
 					""
