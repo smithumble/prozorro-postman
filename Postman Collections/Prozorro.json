@@ -7053,7 +7053,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "697433d7-b715-4f4e-a9be-985ce91bf489",
+				"id": "1aee8ba7-bcfa-4d67-b425-a820f7073ebe",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -7063,7 +7063,7 @@
 					"const load = (name, url) => {",
 					"    let src = pm.environment.get(name);",
 					"    console.log(src);",
-					"    if (!src) {",
+					"    if (src === undefined) {",
 					"    console.log(src);",
 					"        pm.sendRequest(url, (err, res) => {",
 					"            src = res.text();",
@@ -7284,7 +7284,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0a9f4038-5fcb-4700-908f-81d7cb73badd",
+				"id": "d4c9dd57-415b-412d-9897-6d92ef524480",
 				"type": "text/javascript",
 				"exec": [
 					""
