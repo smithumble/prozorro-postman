@@ -23,13 +23,18 @@
 											"script": {
 												"id": "f399c279-6622-4718-b423-f5533818241c",
 												"exec": [
-													"pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
-													"pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
 													"",
-													"utils.tests.testTenderCreate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"    utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
 													"",
-													"utils.handlers.tenderCreateSuccessResponseHandler(pm, postman);",
+													"    utils.tests.tenderCreateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"    pm.environment.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
+													"    pm.environment.set(\"TENDER_ID\", pm.response.json().data.id);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -71,7 +76,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"config\": {\n        \"hasAuction\": true\n    },\n    \"data\": {\n        \"procurementMethodDetails\": \"{{PROCUREMENT_METHOD_DETAILS}}\",\n        \"submissionMethodDetails\": \"{{SUBMISSION_METHOD_DETAILS}}\",\n        \"enquiryPeriod\": {\n            \"endDate\": \"{{TENDER_PERIOD_END_DATE}}\"\n        },\n        \"tenderPeriod\": {\n            \"endDate\": \"{{TENDER_PERIOD_END_DATE}}\"\n        },\n        \"items\": [\n            {\n                \"additionalClassifications\": [\n                    {\n                        \"description\": \"Техніка конторська/офісна, інша\",\n                        \"id\": \"28.23.23\",\n                        \"scheme\": \"ДКПП\"\n                    }\n                ],\n                \"classification\": {\n                    \"description\": \"Промислова техніка\",\n                    \"id\": \"42000000-6\",\n                    \"scheme\": \"ДК021\"\n                },\n                \"deliveryAddress\": {\n                    \"countryName\": \"Україна\",\n                    \"locality\": \"м. Київ\",\n                    \"postalCode\": \"79000\",\n                    \"region\": \"м. Київ\",\n                    \"streetAddress\": \"вул. Тестова 1\"\n                },\n                \"deliveryDate\": {\n                    \"endDate\": \"2017-08-10T16:02:36.221295+03:00\",\n                    \"startDate\": \"2017-07-11T16:02:36.221241+03:00\"\n                },\n                \"description\": \"Тестова назва предмета закупівлі\",\n                \"description_en\": \"Procurement item test name\",\n                \"quantity\": 1,\n                \"relatedLot\": \"dd22c9c085f64e019f943999b5b41fe5\",\n                \"unit\": {\n                    \"code\": \"KGM\",\n                    \"name\": \"кг\"\n                }\n            },\n            {\n                \"additionalClassifications\": [\n                    {\n                        \"description\": \"Техніка конторська/офісна, інша\",\n                        \"id\": \"28.23.23\",\n                        \"scheme\": \"ДКПП\"\n                    }\n                ],\n                \"classification\": {\n                    \"description\": \"Промислова техніка\",\n                    \"id\": \"42000000-6\",\n                    \"scheme\": \"ДК021\"\n                },\n                \"deliveryAddress\": {\n                    \"countryName\": \"Україна\",\n                    \"locality\": \"м. Київ\",\n                    \"postalCode\": \"79000\",\n                    \"region\": \"м. Київ\",\n                    \"streetAddress\": \"вул. Тестова 1\"\n                },\n                \"deliveryDate\": {\n                    \"endDate\": \"2017-08-10T16:02:36.221351+03:00\",\n                    \"startDate\": \"2017-07-11T16:02:36.221327+03:00\"\n                },\n                \"description\": \"Тестова назва предмета закупівлі\",\n                \"description_en\": \"Procurement item test name\",\n                \"quantity\": 1,\n                \"relatedLot\": \"9d4fc4783ebb4a99b10cc9a2f7d7552f\",\n                \"unit\": {\n                    \"code\": \"KGM\",\n                    \"name\": \"кг\"\n                }\n            }\n        ],\n        \"lots\": [\n            {\n                \"description\": \"Опис Лот №1\",\n                \"id\": \"dd22c9c085f64e019f943999b5b41fe5\",\n                \"minimalStep\": {\n                    \"amount\": 10,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"title\": \"Лот №1\",\n                \"value\": {\n                    \"amount\": 500,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"guarantee\": {\n                    \"amount\": 100,\n                    \"currency\": \"UAH\"\n                }\n            },\n            {\n                \"description\": \"Опис Лот №2\",\n                \"id\": \"9d4fc4783ebb4a99b10cc9a2f7d7552f\",\n                \"minimalStep\": {\n                    \"amount\": 10,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"title\": \"Лот №2\",\n                \"value\": {\n                    \"amount\": 500,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"guarantee\": {\n                    \"amount\": 100,\n                    \"currency\": \"UAH\"\n                }\n            }\n        ],\n        \"mainProcurementCategory\": \"services\",\n        \"milestones\": [\n            {\n                \"code\": \"prepayment\",\n                \"duration\": {\n                    \"days\": 2,\n                    \"type\": \"banking\"\n                },\n                \"percentage\": 100,\n                \"sequenceNumber\": 0,\n                \"title\": \"signingTheContract\",\n                \"type\": \"financing\"\n            }\n        ],\n        \"minimalStep\": {\n            \"amount\": 10,\n            \"currency\": \"UAH\"\n        },\n        \"procurementMethodType\": \"aboveThreshold\",\n        \"procuringEntity\": {\n            \"address\": {\n                \"countryName\": \"Україна\",\n                \"locality\": \"м. Київ\",\n                \"postalCode\": \"01220\",\n                \"region\": \"м. Київ\",\n                \"streetAddress\": \"вул. Тестова, 11, корпус 1\"\n            },\n            \"contactPoint\": {\n                \"name\": \"Державне управління справами\",\n                \"telephone\": \"+380440000000\"\n            },\n            \"identifier\": {\n                \"id\": \"00037256\",\n                \"scheme\": \"UA-EDR\",\n                \"uri\": \"http://www.dus.gov.ua/\"\n            },\n            \"kind\": \"general\",\n            \"name\": \"Державне управління справами\"\n        },\n        \"status\": \"draft\",\n        \"title\": \"Тестовий опис предмету закупівлі у заголовку тендеру\",\n        \"title_en\": \"Procurement item test description in procedure title\",\n        \"value\": {\n            \"amount\": 500,\n            \"currency\": \"UAH\"\n        }\n    }\n}",
+											"raw": "{\n    \"config\": {\n        \"hasAuction\": true\n    },\n    \"data\": {\n        \"procurementMethodType\": \"aboveThreshold\",\n        \"procurementMethodDetails\": \"{{PROCUREMENT_METHOD_DETAILS}}\",\n        \"submissionMethodDetails\": \"{{SUBMISSION_METHOD_DETAILS}}\",\n        \"enquiryPeriod\": {\n            \"endDate\": \"{{TENDER_PERIOD_END_DATE}}\"\n        },\n        \"tenderPeriod\": {\n            \"endDate\": \"{{TENDER_PERIOD_END_DATE}}\"\n        },\n        \"title\": \"Тестовий опис предмету закупівлі у заголовку тендеру\",\n        \"title_en\": \"Procurement item test description in procedure title\",\n        \"title_ru\": \"Тестовое описание предмета закупки в заголовке тендера\",\n        \"status\": \"draft\",\n        \"value\": {\n            \"amount\": 500,\n            \"currency\": \"UAH\"\n        },\n        \"minimalStep\": {\n            \"amount\": 10,\n            \"currency\": \"UAH\"\n        },\n        \"items\": [\n            {\n                \"additionalClassifications\": [\n                    {\n                        \"description\": \"Техніка конторська/офісна, інша\",\n                        \"id\": \"28.23.23\",\n                        \"scheme\": \"ДКПП\"\n                    }\n                ],\n                \"classification\": {\n                    \"description\": \"Промислова техніка\",\n                    \"id\": \"42000000-6\",\n                    \"scheme\": \"ДК021\"\n                },\n                \"deliveryAddress\": {\n                    \"countryName\": \"Україна\",\n                    \"locality\": \"м. Київ\",\n                    \"postalCode\": \"79000\",\n                    \"region\": \"м. Київ\",\n                    \"streetAddress\": \"вул. Тестова 1\"\n                },\n                \"deliveryDate\": {\n                    \"endDate\": \"2017-08-10T16:02:36.221295+03:00\",\n                    \"startDate\": \"2017-07-11T16:02:36.221241+03:00\"\n                },\n                \"description\": \"Тестова назва предмета закупівлі\",\n                \"description_en\": \"Procurement item test name\",\n                \"quantity\": 1,\n                \"relatedLot\": \"dd22c9c085f64e019f943999b5b41fe5\",\n                \"unit\": {\n                    \"code\": \"KGM\",\n                    \"name\": \"кг\"\n                }\n            },\n            {\n                \"additionalClassifications\": [\n                    {\n                        \"description\": \"Техніка конторська/офісна, інша\",\n                        \"id\": \"28.23.23\",\n                        \"scheme\": \"ДКПП\"\n                    }\n                ],\n                \"classification\": {\n                    \"description\": \"Промислова техніка\",\n                    \"id\": \"42000000-6\",\n                    \"scheme\": \"ДК021\"\n                },\n                \"deliveryAddress\": {\n                    \"countryName\": \"Україна\",\n                    \"locality\": \"м. Київ\",\n                    \"postalCode\": \"79000\",\n                    \"region\": \"м. Київ\",\n                    \"streetAddress\": \"вул. Тестова 1\"\n                },\n                \"deliveryDate\": {\n                    \"endDate\": \"2017-08-10T16:02:36.221351+03:00\",\n                    \"startDate\": \"2017-07-11T16:02:36.221327+03:00\"\n                },\n                \"description\": \"Тестова назва предмета закупівлі\",\n                \"description_en\": \"Procurement item test name\",\n                \"quantity\": 1,\n                \"relatedLot\": \"9d4fc4783ebb4a99b10cc9a2f7d7552f\",\n                \"unit\": {\n                    \"code\": \"KGM\",\n                    \"name\": \"кг\"\n                }\n            }\n        ],\n        \"lots\": [\n            {\n                \"id\": \"dd22c9c085f64e019f943999b5b41fe5\",\n                \"title\": \"Лот №1\",\n                \"description\": \"Опис Лот №1\",\n                \"minimalStep\": {\n                    \"amount\": 10,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"value\": {\n                    \"amount\": 500,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"guarantee\": {\n                    \"amount\": 100,\n                    \"currency\": \"UAH\"\n                }\n            },\n            {\n                \"id\": \"9d4fc4783ebb4a99b10cc9a2f7d7552f\",\n                \"title\": \"Лот №2\",\n                \"description\": \"Опис Лот №2\",\n                \"minimalStep\": {\n                    \"amount\": 10,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"value\": {\n                    \"amount\": 500,\n                    \"currency\": \"UAH\",\n                    \"valueAddedTaxIncluded\": true\n                },\n                \"guarantee\": {\n                    \"amount\": 100,\n                    \"currency\": \"UAH\"\n                }\n            }\n        ],\n        \"mainProcurementCategory\": \"services\",\n        \"milestones\": [\n            {\n                \"code\": \"prepayment\",\n                \"duration\": {\n                    \"days\": 2,\n                    \"type\": \"banking\"\n                },\n                \"percentage\": 100,\n                \"sequenceNumber\": 0,\n                \"title\": \"signingTheContract\",\n                \"type\": \"financing\"\n            }\n        ],\n        \"procuringEntity\": {\n            \"address\": {\n                \"countryName\": \"Україна\",\n                \"locality\": \"м. Київ\",\n                \"postalCode\": \"01220\",\n                \"region\": \"м. Київ\",\n                \"streetAddress\": \"вул. Тестова, 11, корпус 1\"\n            },\n            \"contactPoint\": {\n                \"name\": \"Державне управління справами\",\n                \"telephone\": \"+380440000000\"\n            },\n            \"identifier\": {\n                \"id\": \"00037256\",\n                \"scheme\": \"UA-EDR\",\n                \"uri\": \"http://www.dus.gov.ua/\"\n            },\n            \"kind\": \"general\",\n            \"name\": \"Державне управління справами\"\n        }\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -100,8 +105,15 @@
 											"script": {
 												"id": "e4335a43-7205-4a7f-8c03-52cfc84abbdc",
 												"exec": [
-													"utils.tests.testTenderCriteriaCreate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"",
+													"    utils.handlers.tenderCriteriaCreateSuccessResponseHandler(pm, postman);",
+													"    ",
+													"    utils.tests.tenderCriteriaCreateTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -176,10 +188,15 @@
 											"script": {
 												"id": "cfaed62a-066d-4f7e-8041-75a255d496c6",
 												"exec": [
-													"pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
 													"",
-													"utils.tests.testTenderAttachDocument(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"    utils.tests.tenderAttachDocumentTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"    ",
+													"    pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -248,8 +265,13 @@
 											"script": {
 												"id": "f428d5e8-b0e2-48f2-a03c-ce6d55a31696",
 												"exec": [
-													"utils.tests.testTenderAttachDocumentUpdate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.tenderAttachDocumentUpdateTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -323,8 +345,13 @@
 											"script": {
 												"id": "5e12cf69-f57f-46ea-8912-f0e47447d77b",
 												"exec": [
-													"utils.tests.testTenderAttachDocumentFile(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"",
+													"    utils.tests.tenderAttachDocumentFileTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -393,8 +420,13 @@
 											"script": {
 												"id": "d8b4242e-f284-4db2-b415-c22618a7a117",
 												"exec": [
-													"utils.tests.testTenderAttachDocumentBulk(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"    ",
+													"    utils.tests.tenderAttachDocumentBulkTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -463,10 +495,15 @@
 											"script": {
 												"id": "6c984869-efbc-4f29-a54b-9f2d70229207",
 												"exec": [
-													"utils.handlers.tenderGetSuccessResponseHandler(pm, postman);",
-													"utils.tests.testTenderActivate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
-													""
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.handlers.tenderGetSuccessResponseHandler(pm, postman);",
+													"",
+													"    utils.tests.tenderActivateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -533,12 +570,16 @@
 											"script": {
 												"id": "9881fbcd-509d-4ffe-92ad-404a6e8e0dda",
 												"exec": [
-													"pm.environment.set(\"TENDER_BID_TOKEN\", pm.response.json().access.token);",
-													"pm.environment.set(\"TENDER_BID_ID\", pm.response.json().data.id);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
 													"",
-													"utils.tests.testBidCreate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
-													""
+													"    utils.tests.bidCreateTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"    pm.environment.set(\"TENDER_BID_TOKEN\", pm.response.json().access.token);",
+													"    pm.environment.set(\"TENDER_BID_ID\", pm.response.json().data.id);",
+													"",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -600,10 +641,15 @@
 											"script": {
 												"id": "8cc2d08c-178f-450b-89a3-02076a71acac",
 												"exec": [
-													"pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
 													"",
-													"utils.tests.testBidAttachDocument(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"    utils.tests.bidAttachDocumentTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"    pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -678,8 +724,13 @@
 											"script": {
 												"id": "955ec101-04bb-4b6f-b5f2-d6891d78b040",
 												"exec": [
-													"utils.tests.testBidAttachDocumentBulk(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"    ",
+													"    utils.tests.bidAttachDocumentBulkTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -754,8 +805,13 @@
 											"script": {
 												"id": "aa71d6b0-bdb2-4600-bd0f-ff72433b4d6f",
 												"exec": [
-													"utils.tests.testBidRequirementResponseCreate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"    ",
+													"    utils.tests.bidRequirementResponseCreateTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -836,8 +892,13 @@
 											"script": {
 												"id": "26d82475-8c0e-4917-8d04-2822f17cd805",
 												"exec": [
-													"utils.tests.testBidActivate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.bidActivateTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -917,8 +978,13 @@
 											"script": {
 												"id": "6f86aab6-e71e-4b3a-ba28-d27544e368ef",
 												"exec": [
-													"utils.tests.testBidGetWithCredentials(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.bidGetWithCredentialsTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -992,11 +1058,16 @@
 											"script": {
 												"id": "840791ae-b6e2-41de-911e-8eb5ad5fbf09",
 												"exec": [
-													"pm.environment.set(\"TENDER_BID_2_TOKEN\", pm.response.json().access.token);",
-													"pm.environment.set(\"TENDER_BID_2_ID\", pm.response.json().data.id);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
 													"",
-													"utils.tests.testBidCreate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"    utils.tests.bidCreateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"    pm.environment.set(\"TENDER_BID_2_TOKEN\", pm.response.json().access.token);",
+													"    pm.environment.set(\"TENDER_BID_2_ID\", pm.response.json().data.id);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -1059,10 +1130,15 @@
 											"script": {
 												"id": "e400a370-ec04-46c7-9db3-7587f1224e9d",
 												"exec": [
-													"pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
 													"",
-													"utils.tests.testBidAttachDocument(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"    utils.tests.bidAttachDocumentTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"    pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -1137,8 +1213,13 @@
 											"script": {
 												"id": "2de4b51d-b98f-48fa-b886-d857a109ae58",
 												"exec": [
-													"utils.tests.testBidRequirementResponseCreate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
+													"    ",
+													"    utils.tests.bidRequirementResponseCreateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -1219,8 +1300,13 @@
 											"script": {
 												"id": "cbd6d5ab-ce78-4849-8648-229c7fc0bc7e",
 												"exec": [
-													"utils.tests.testBidActivate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.bidActivateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -1381,8 +1467,6 @@
 											"script": {
 												"id": "154ed550-840d-43f3-9409-8cb37bde9576",
 												"exec": [
-													"utils.handlers.tenderGetSuccessResponseHandler(pm);",
-													"",
 													"utils.helpers.wait(",
 													"    pm, postman,",
 													"    (pm, postman) => {",
@@ -1472,9 +1556,15 @@
 											"script": {
 												"id": "a2363d9d-9c77-4f0d-a6b5-25d64bb503f2",
 												"exec": [
-													"utils.helpers.saveAwardsIDs(pm, postman);",
-													"utils.tests.testAwardsGet(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"",
+													"    utils.tests.awardsGetTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"    ",
+													"    utils.helpers.saveAwardsIDs(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -1530,8 +1620,13 @@
 											"script": {
 												"id": "38cb5a55-3607-4abf-9a06-cdde0f996c78",
 												"exec": [
-													"utils.tests.testAwardActivate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.awardActivateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -1611,8 +1706,13 @@
 											"script": {
 												"id": "e6698f29-2137-4383-a4c3-bbfcbd40b630",
 												"exec": [
-													"utils.tests.testAwardActivate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.awardActivateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -1915,12 +2015,14 @@
 											"script": {
 												"id": "c487bfad-0b80-47b6-8771-55b7517c833a",
 												"exec": [
-													"utils.tests.testAwardsGet(pm, postman);",
 													"utils.helpers.waitToDate(",
 													"    pm, postman,",
 													"    utils.helpers.getServerDateFromHeader(pm),",
 													"    utils.helpers.getAwardsComplaintPeriodLatestEndDate(pm),",
-													"    utils.helpers.setNextRequest,",
+													"    () => {",
+													"        utils.tests.awardsGetTest(pm, postman);",
+													"        utils.helpers.setNextRequest(pm, postman)",
+													"    },",
 													"    setTimeout",
 													");",
 													""
@@ -1988,10 +2090,15 @@
 											"script": {
 												"id": "f903ec6e-5540-4c9f-926b-65d7839099f0",
 												"exec": [
-													"utils.helpers.saveContractsIDs(pm, postman);",
-													"utils.tests.testContractsGet(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
-													""
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.contractsGetTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"    utils.helpers.saveContractsIDs(pm, postman);",
+													"",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -2046,11 +2153,15 @@
 											"script": {
 												"id": "cb05337b-e60b-4b68-bc66-b6b1e5eb1f1d",
 												"exec": [
-													"pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"utils.helpers.checkStatusCode(pm, postman, 201, () => {",
 													"",
-													"utils.tests.testContractAttachDocument(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
-													""
+													"    utils.tests.contractAttachDocumentTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"    ",
+													"    pm.environment.set(\"DOCUMENT_ID\", pm.response.json().data.id);",
+													"",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -2124,9 +2235,13 @@
 											"script": {
 												"id": "bb636e65-e69f-4fb9-825b-a4f87cb3193c",
 												"exec": [
-													"utils.tests.testContractActivate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
-													""
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.contractActivateTest(pm, postman);",
+													"",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -2205,8 +2320,13 @@
 											"script": {
 												"id": "8e60efd0-6841-4fc5-a8e3-d6e50adfdde0",
 												"exec": [
-													"utils.tests.testContractActivate(pm, postman);",
-													"utils.helpers.setNextRequest(pm, postman);",
+													"utils.helpers.checkStatusCode(pm, postman, 200, () => {",
+													"    ",
+													"    utils.tests.contractActivateTest(pm, postman);",
+													"    ",
+													"    utils.helpers.setNextRequest(pm, postman);",
+													"",
+													"});",
 													""
 												],
 												"type": "text/javascript"
@@ -2355,9 +2475,13 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "54c87529-63ef-4b56-9e4e-7b006240528a",
+										"id": "b8f9121e-87c8-4a17-b7d0-bc6c0ab2afb9",
 										"type": "text/javascript",
 										"exec": [
+											"///////////////////////////////////////////////////",
+											"////////////////////// UTILS //////////////////////",
+											"///////////////////////////////////////////////////",
+											"",
 											"utils.order = [];",
 											"utils.order.push(\"Tender create\");",
 											"utils.order.push(\"Tender criteria create\");",
@@ -2396,7 +2520,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bd1f85d8-5796-4680-a19c-095c31858971",
+										"id": "99b8ca9a-36c6-4c48-bccb-d13ad7d28c1c",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -2751,51 +2875,6 @@
 									"response": []
 								},
 								{
-									"name": "Tender list",
-									"id": "f3e4888b-56ad-42e6-aa59-bf8b586845cc",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"auth": {
-											"type": "noauth"
-										},
-										"method": "GET",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{API_URL}}/api/2.5/tenders?mode=_all_&descending=1",
-											"host": [
-												"{{API_URL}}"
-											],
-											"path": [
-												"api",
-												"2.5",
-												"tenders"
-											],
-											"query": [
-												{
-													"key": "mode",
-													"value": "_all_"
-												},
-												{
-													"key": "descending",
-													"value": "1"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "Tender list (deprecateed)",
 									"id": "5798df79-a561-4474-bda6-81a015d5fcfa",
 									"protocolProfileBehavior": {
@@ -2928,6 +3007,51 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "Tender list",
+									"id": "f3e4888b-56ad-42e6-aa59-bf8b586845cc",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/api/2.5/tenders?mode=_all_&descending=1",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"api",
+												"2.5",
+												"tenders"
+											],
+											"query": [
+												{
+													"key": "mode",
+													"value": "_all_"
+												},
+												{
+													"key": "descending",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							],
 							"id": "bce8fa06-0bda-4972-ac04-fd7707a03cfa"
@@ -2938,10 +3062,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "3a3e5813-a329-4e7d-86e8-84bb44f75405",
+								"id": "6993324c-eae0-461f-96bb-a49856f26519",
 								"type": "text/javascript",
 								"exec": [
-									"// Configuration",
+									"///////////////////////////////////////////////////",
+									"////////////////////// CONFIGURATION //////////////",
+									"///////////////////////////////////////////////////",
 									"",
 									"// Accelerator is multiplier for all periods calculations",
 									"const ACCELERATOR = 100000;",
@@ -2979,26 +3105,16 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "56750b23-6059-4aec-b379-c106eea17e90",
+								"id": "0756833b-dbff-412f-bc87-fc4baeccc3c9",
 								"type": "text/javascript",
 								"exec": [
+									"///////////////////////////////////////////////////",
+									"////////////////////// TESTS //////////////////////",
+									"///////////////////////////////////////////////////",
+									"",
 									"utils.tests = {}",
 									"",
-									"utils.tests.testStatusCode = (pm, postman, code, callback) => {",
-									"",
-									"    pm.test(`Статус код ${code}`, () => {",
-									"        pm.expect(pm.response.code).to.eql(code);",
-									"    });",
-									"",
-									"    if (pm.response.code === code) {",
-									"        callback(pm, postman);",
-									"        return true",
-									"    }",
-									"",
-									"    return false;",
-									"}",
-									"",
-									"utils.tests.testTenderCreate = (pm, postman) => {",
+									"utils.tests.tenderCreateTest = (pm, postman) => {",
 									"",
 									"    pm.test(\"Поля body присутні\", () => {",
 									"        pm.expect(pm.response.json()).to.have.all.keys([\"data\", \"config\", \"access\"]);",
@@ -3006,6 +3122,10 @@
 									"",
 									"    pm.test(\"Поля body.access присутні\", () => {",
 									"        pm.expect(pm.response.json().access).to.have.all.keys([\"token\", \"transfer\"]);",
+									"    });",
+									"",
+									"    pm.test(\"Поле data.status має значення draft\", () => {",
+									"        pm.expect(pm.response.json().data.status).to.eql(\"draft\");",
 									"    });",
 									"",
 									"    pm.test(\"Поле data.title є не пустою строкою\", function() {",
@@ -3021,51 +3141,27 @@
 									"    });",
 									"}",
 									"",
-									"utils.tests.testTenderCriteriaCreate = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.tenderCriteriaCreateTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testTenderAttachDocument = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.tenderAttachDocumentTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testTenderAttachDocumentUpdate = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.tenderAttachDocumentUpdateTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testTenderAttachDocumentFile = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.tenderAttachDocumentFileTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testTenderAttachDocumentBulk = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.tenderAttachDocumentBulkTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testTenderActivate = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.tenderActivateTest = (pm, postman) => {",
 									"",
 									"    pm.test(\"Поле data.status має значення active.tendering\", () => {",
 									"        pm.expect(pm.response.json().data.status).to.eql(\"active.tendering\");",
@@ -3073,43 +3169,27 @@
 									"",
 									"}",
 									"",
-									"utils.tests.testBidCreate = (pm, postman) => {",
-									"    ",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
+									"utils.tests.bidCreateTest = (pm, postman) => {",
+									"",
+									"    pm.test(\"Поле data.status має значення draft\", () => {",
+									"        pm.expect(pm.response.json().data.status).to.eql(\"draft\");",
 									"    });",
 									"",
 									"}",
 									"",
-									"utils.tests.testBidAttachDocument = (pm, postman) => {",
-									"    ",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.bidAttachDocumentTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testBidAttachDocumentBulk = (pm, postman) => {",
-									"    ",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.bidAttachDocumentBulkTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testBidRequirementResponseCreate = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.bidRequirementResponseCreateTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testBidActivate = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.bidActivateTest = (pm, postman) => {",
 									"",
 									"    pm.test(\"Поле data.status має значення active\", () => {",
 									"        pm.expect(pm.response.json().data.status).to.eql(\"active\");",
@@ -3117,19 +3197,11 @@
 									"    ",
 									"}",
 									"",
-									"utils.tests.testBidGetWithCredentials = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.bidGetWithCredentialsTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testAwardsGet = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.awardsGet = (pm, postman) => {",
 									"",
 									"    pm.test(`Кількість авардів більше 0 (${pm.response.json().data.length})`, () => {",
 									"        pm.expect(pm.response.json().data.length).to.greaterThan(0);",
@@ -3137,11 +3209,7 @@
 									"",
 									"}",
 									"",
-									"utils.tests.testAwardActivate = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.awardActivateTest = (pm, postman) => {",
 									"",
 									"    pm.test(\"Поле data.status має значення active\", () => {",
 									"        pm.expect(pm.response.json().data.status).to.eql(\"active\");",
@@ -3149,11 +3217,7 @@
 									"",
 									"}",
 									"",
-									"utils.tests.testContractsGet = (pm, postman) => {",
-									"    ",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.contractsGetTest = (pm, postman) => {",
 									"",
 									"    pm.test(`Кількість контрактів більше 0 (${pm.response.json().data.length})`, () => {",
 									"        pm.expect(pm.response.json().data.length).to.greaterThan(0);",
@@ -3161,19 +3225,11 @@
 									"",
 									"}",
 									"",
-									"utils.tests.testContractAttachDocument = (pm, postman) => {",
-									"",
-									"    pm.test(`Статус код 201`, () => {",
-									"        pm.expect(pm.response.code).to.eql(201);",
-									"    });",
+									"utils.tests.contractAttachDocumentTest = (pm, postman) => {",
 									"",
 									"}",
 									"",
-									"utils.tests.testContractActivate = (pm, postman) => {",
-									"    ",
-									"    pm.test(`Статус код 200`, () => {",
-									"        pm.expect(pm.response.code).to.eql(200);",
-									"    });",
+									"utils.tests.contractActivateTest = (pm, postman) => {",
 									"",
 									"    pm.test(\"Поле data.status має значення active\", () => {",
 									"        pm.expect(pm.response.json().data.status).to.eql(\"active\");",
@@ -6388,7 +6444,196 @@
 					"id": "cb7b5afa-b5f7-4bcd-88ec-eb31a2c21f2a"
 				}
 			],
-			"id": "60edaa03-0d36-420f-8af6-1d6dfcac694d"
+			"id": "60edaa03-0d36-420f-8af6-1d6dfcac694d",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "76f88240-3679-4836-beda-78538f408c57",
+						"type": "text/javascript",
+						"exec": [
+							"///////////////////////////////////////////////////",
+							"////////////////////// UTILS //////////////////////",
+							"///////////////////////////////////////////////////",
+							"",
+							"////////////////////// HELPERS ////////////////////",
+							"",
+							"utils.helpers.calculateEndDate = (startDate, days, accelerator, timezone) => {",
+							"    const totalSeconds = days * 24 * 60 * 60;",
+							"    const acceleratedDays = totalSeconds / accelerator;",
+							"    const endDate = moment(startDate);",
+							"    endDate.add(acceleratedDays, 'seconds');",
+							"    return endDate.tz(timezone).format()",
+							"}",
+							"",
+							"utils.helpers.waitToDate = (pm, postman, statDate, endDate, successCallback, setTimeoutFunc) => {",
+							"    var timeout = (endDate.getTime() - statDate.getTime());",
+							"    if (timeout < 0) {",
+							"        timeout = 0;",
+							"    }",
+							"    utils.handlers.waitToDateHandler(pm, postman, statDate, endDate, timeout);",
+							"    setTimeoutFunc(() => {",
+							"        successCallback(pm, postman);",
+							"    }, timeout);",
+							"}",
+							"",
+							"utils.helpers.waitDataStatus = (pm, postman, status, checkCallback, successCallback, setTimeoutFunc, delay) => {",
+							"",
+							"    const checkStatusCallback = (pm, postman) => {",
+							"",
+							"        pm.test(`Статус код 200`, () => {",
+							"            pm.expect(pm.response.code).to.eql(200);",
+							"        });",
+							"",
+							"        checkCallback(pm, postman);",
+							"",
+							"        return pm.response.json().data.status === status;",
+							"    }",
+							"",
+							"    const successStatusCallback = (pm, postman) => {",
+							"        var dataStatus = pm.response.json().data.status;",
+							"            ",
+							"        pm.test(`Поле data.status має значення ${status} (${dataStatus})`, () => {",
+							"            pm.expect(dataStatus).to.eql(status);",
+							"        });",
+							"",
+							"        successCallback(pm, postman);",
+							"    }",
+							"",
+							"    utils.helpers.wait(pm, postman, checkStatusCallback, successStatusCallback, setTimeoutFunc, delay);",
+							"}",
+							"",
+							"utils.helpers.waitDataStatusNot = (pm, postman, status, checkCallback, successCallback, setTimeoutFunc, delay) => {",
+							"",
+							"    const checkStatusCallback = (pm, postman) => {",
+							"",
+							"        pm.test(`Статус код 200`, () => {",
+							"            pm.expect(pm.response.code).to.eql(200);",
+							"        });",
+							"",
+							"        checkCallback(pm, postman);",
+							"        ",
+							"        return pm.response.json().data.status !== status;",
+							"    }",
+							"",
+							"    const successStatusCallback = (pm, postman) => {",
+							"        var dataStatus = pm.response.json().data.status;",
+							"            ",
+							"        pm.test(`Поле data.status має значення не ${status} (${dataStatus})`, () => {",
+							"            pm.expect(dataStatus).not.to.eql(status);",
+							"        });",
+							"",
+							"        successCallback(pm, postman);",
+							"    }",
+							"",
+							"    utils.helpers.wait(pm, postman, checkStatusCallback, successStatusCallback, setTimeoutFunc, delay);",
+							"}",
+							"",
+							"utils.helpers.saveAwardsIDs = (pm, postman) => {",
+							"    var awards = pm.response.json().data || [];",
+							"    for (var i=0; i<awards.length; i++) {",
+							"        var name;",
+							"        if (i == 0) {",
+							"            name = \"TENDER_AWARD_ID\";",
+							"        } else {",
+							"            name = \"TENDER_AWARD_\" + (i + 1) + \"_ID\";",
+							"        }",
+							"        pm.environment.set(name, awards[i].id);",
+							"    }",
+							"}",
+							"",
+							"utils.helpers.saveContractsIDs = (pm, postman) => {",
+							"    var contracts = pm.response.json().data || [];",
+							"    for (var i=0; i<contracts.length; i++) {",
+							"        var name;",
+							"        if (i == 0) {",
+							"            name = \"TENDER_CONTRACT_ID\";",
+							"        } else {",
+							"            name = \"TENDER_CONTRACT_\" + (i + 1) + \"_ID\";",
+							"        }",
+							"        pm.environment.set(name, contracts[i].id);",
+							"    }",
+							"}",
+							"",
+							"utils.helpers.getServerDateFromHeader = (pm, postman) => {",
+							"    return new Date(pm.response.headers.get(\"date\"));",
+							"}",
+							"",
+							"utils.helpers.getAwardsComplaintPeriodLatestEndDate = (pm, postman) => {",
+							"    const awards = pm.response.json().data || [];",
+							"    let latestEndDate = null;",
+							"    for (let i = 0; i < awards.length; i++) {",
+							"        const award = awards[i];",
+							"        const { complaintPeriod } = award;",
+							"        if (complaintPeriod && complaintPeriod.endDate) {",
+							"            const endDate = new Date(complaintPeriod.endDate);",
+							"            if (!latestEndDate || endDate > latestEndDate) {",
+							"                latestEndDate = endDate;",
+							"            }",
+							"        }",
+							"    }",
+							"    return latestEndDate;",
+							"}",
+							"",
+							"////////////////////// HANDLERS ////////////////////",
+							"",
+							"utils.handlers.waitToDateHandler = (pm, postman, statDate, endDate, timeout) => {",
+							"    msg = `\\n`;",
+							"    msg += `Wait ${timeout/1000} seconds\\n`;",
+							"    msg += `Source: ` + statDate + `\\n`;",
+							"    msg += `Target: ` + endDate + `\\n`;",
+							"    console.log(msg);",
+							"}",
+							"",
+							"utils.handlers.tenderCreateSuccessResponseHandler = (pm, postman) => {",
+							"    var responseJson = pm.response.json();",
+							"    var data = responseJson.data;",
+							"    var access = responseJson.access;",
+							"",
+							"    msg = `\\n`;",
+							"    msg += `Tender created:\\n`;",
+							"    msg += ` - id \\t\\t\\t\\t${data.id}\\n`;",
+							"    msg += ` - token \\t\\t\\t${access.token}\\n`;",
+							"    if (access.transfer) {",
+							"        msg += ` - transfer \\t\\t\\t${access.transfer}\\n`;",
+							"    }",
+							"    msg += ` - status \\t\\t\\t${data.status}\\n`;",
+							"    msg += ` - tenderID \\t\\t\\t${data.tenderID}\\n`;",
+							"    msg += ` - procurementMethodType \\t${data.procurementMethodType}\\n`;",
+							"    console.log(msg)",
+							"}",
+							"",
+							"utils.handlers.tenderGetSuccessResponseHandler = (pm, postman) => {",
+							"    var responseJson = pm.response.json();",
+							"    var data = responseJson.data;",
+							"    var access = responseJson.access;",
+							"",
+							"    msg = `\\n`;",
+							"    msg += `Tender:\\n`;",
+							"    msg += ` - id \\t\\t\\t\\t${data.id}\\n`;",
+							"    msg += ` - status \\t\\t\\t${data.status}\\n`;",
+							"    console.log(msg)",
+							"}",
+							"",
+							"utils.handlers.tenderCriteriaCreateSuccessResponseHandler = (pm, postman) => {",
+							"",
+							"}",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0223380b-2acf-49b1-aad9-3093aee1ba30",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "DS",
@@ -8630,7 +8875,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "0fa3d5f7-2caa-4faa-8f50-50f5f4155b8b",
+				"id": "4dc85420-709f-4bfe-8570-02f9c2be299d",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -8678,7 +8923,7 @@
 					"",
 					"////////////////////// HELPERS ////////////////////",
 					"",
-					"utils.helpers.setNextRequest = (pm, postman) => {",
+					"utils.helpers.setNextRequest = (pm, postman, value) => {",
 					"    const findNextString = (arr, target) => {",
 					"        const index = arr.indexOf(target);",
 					"        ",
@@ -8688,47 +8933,29 @@
 					"            return null;",
 					"        }",
 					"    }",
-					"",
-					"    const nextRequest = findNextString(utils.order, pm.info.requestName);",
-					"    postman.setNextRequest(nextRequest);",
+					"    if (value !== undefined) {",
+					"        postman.setNextRequest(value);",
+					"    } else {",
+					"        postman.setNextRequest(findNextString(utils.order, pm.info.requestName));",
+					"    }",
 					"}",
 					"",
 					"utils.helpers.checkStatusCode = (pm, postman, code, successCallback, failCallback) => {",
-					"",
 					"    pm.test(`Статус код ${code}`, () => {",
 					"        pm.expect(pm.response.code).to.eql(code);",
 					"    });",
 					"",
 					"    if (pm.response.code !== code) {",
-					"        if (failCallback) failCallback(pm, postman);",
+					"        utils.helpers.setNextRequest(pm, postman, null);",
+					"        if (failCallback !== undefined) failCallback(pm, postman);",
 					"        return false;",
 					"    }",
 					"",
-					"    if (successCallback) successCallback(pm, postman);",
+					"    if (successCallback !== undefined) successCallback(pm, postman);",
 					"    return true;",
 					"}",
 					"",
-					"utils.helpers.calculateEndDate = (startDate, days, accelerator, timezone) => {",
-					"    const totalSeconds = days*24*60*60;",
-					"    const acceleratedDays = totalSeconds/accelerator;",
-					"    const endDate = moment(startDate);",
-					"    endDate.add(acceleratedDays, 'seconds');",
-					"    return endDate.tz(timezone).format()",
-					"}",
-					"",
-					"utils.helpers.waitToDate = (pm, postman, statDate, endDate, successCallback, setTimeoutFunc) => {",
-					"    var timeout = (endDate.getTime() - statDate.getTime());",
-					"    if (timeout < 0) {",
-					"        timeout = 0;",
-					"    }",
-					"    utils.handlers.waitToDateHandler(pm, postman, statDate, endDate, timeout);",
-					"    setTimeoutFunc(() => {",
-					"        successCallback(pm, postman);",
-					"    }, timeout);",
-					"}",
-					"",
 					"utils.helpers.wait = (pm, postman, checkCallback, successCallback, setTimeoutFunc, delay) => {",
-					"    ",
 					"    const proccess = (pm, postman) => {",
 					"        if (checkCallback(pm, postman)) {",
 					"            successCallback(pm, postman);",
@@ -8749,153 +8976,14 @@
 					"    }",
 					"",
 					"    proccess(pm, postman);",
-					"}",
-					"",
-					"utils.helpers.waitDataStatus = (pm, postman, status, checkCallback, successCallback, setTimeoutFunc, delay) => {",
-					"",
-					"    const checkStatusCallback = (pm, postman) => {",
-					"",
-					"        pm.test(`Статус код 200`, () => {",
-					"            pm.expect(pm.response.code).to.eql(200);",
-					"        });",
-					"",
-					"        checkCallback(pm, postman);",
-					"",
-					"        return pm.response.json().data.status === status;",
-					"    }",
-					"",
-					"    const successStatusCallback = (pm, postman) => {",
-					"        var dataStatus = pm.response.json().data.status;",
-					"            ",
-					"        pm.test(`Поле data.status має значення ${status} (${dataStatus})`, () => {",
-					"            pm.expect(dataStatus).to.eql(status);",
-					"        });",
-					"",
-					"        successCallback(pm, postman);",
-					"    }",
-					"",
-					"    utils.helpers.wait(pm, postman, checkStatusCallback, successStatusCallback, setTimeoutFunc, delay);",
-					"}",
-					"",
-					"utils.helpers.waitDataStatusNot = (pm, postman, status, checkCallback, successCallback, setTimeoutFunc, delay) => {",
-					"",
-					"    const checkStatusCallback = (pm, postman) => {",
-					"",
-					"        pm.test(`Статус код 200`, () => {",
-					"            pm.expect(pm.response.code).to.eql(200);",
-					"        });",
-					"",
-					"        checkCallback(pm, postman);",
-					"        ",
-					"        return pm.response.json().data.status !== status;",
-					"    }",
-					"",
-					"    const successStatusCallback = (pm, postman) => {",
-					"        var dataStatus = pm.response.json().data.status;",
-					"            ",
-					"        pm.test(`Поле data.status має значення не ${status} (${dataStatus})`, () => {",
-					"            pm.expect(dataStatus).not.to.eql(status);",
-					"        });",
-					"",
-					"        successCallback(pm, postman);",
-					"    }",
-					"",
-					"    utils.helpers.wait(pm, postman, checkStatusCallback, successStatusCallback, setTimeoutFunc, delay);",
-					"}",
-					"",
-					"utils.helpers.saveAwardsIDs = (pm, postman) => {",
-					"    var awards = pm.response.json().data || [];",
-					"    for (var i=0; i<awards.length; i++) {",
-					"        var name;",
-					"        if (i == 0) {",
-					"            name = \"TENDER_AWARD_ID\";",
-					"        } else {",
-					"            name = \"TENDER_AWARD_\" + (i + 1) + \"_ID\";",
-					"        }",
-					"        pm.environment.set(name, awards[i].id);",
-					"    }",
-					"}",
-					"",
-					"utils.helpers.saveContractsIDs = (pm, postman) => {",
-					"    var contracts = pm.response.json().data || [];",
-					"    for (var i=0; i<contracts.length; i++) {",
-					"        var name;",
-					"        if (i == 0) {",
-					"            name = \"TENDER_CONTRACT_ID\";",
-					"        } else {",
-					"            name = \"TENDER_CONTRACT_\" + (i + 1) + \"_ID\";",
-					"        }",
-					"        pm.environment.set(name, contracts[i].id);",
-					"    }",
-					"}",
-					"",
-					"utils.helpers.getServerDateFromHeader = (pm, postman) => {",
-					"    return new Date(pm.response.headers.get(\"date\"));",
-					"}",
-					"",
-					"utils.helpers.getAwardsComplaintPeriodLatestEndDate = (pm, postman) => {",
-					"    const awards = pm.response.json().data || [];",
-					"    let latestEndDate = null;",
-					"    for (let i = 0; i < awards.length; i++) {",
-					"        const award = awards[i];",
-					"        const { complaintPeriod } = award;",
-					"        if (complaintPeriod && complaintPeriod.endDate) {",
-					"            const endDate = new Date(complaintPeriod.endDate);",
-					"            if (!latestEndDate || endDate > latestEndDate) {",
-					"                latestEndDate = endDate;",
-					"            }",
-					"        }",
-					"    }",
-					"    return latestEndDate;",
-					"}",
-					"",
-					"/// response handlers",
-					"",
-					"utils.handlers.waitToDateHandler = (pm, postman, statDate, endDate, timeout) => {",
-					"    msg = `\\n`;",
-					"    msg += `Wait ${timeout/1000} seconds\\n`;",
-					"    msg += `Source: ` + statDate + `\\n`;",
-					"    msg += `Target: ` + endDate + `\\n`;",
-					"    console.log(msg);",
-					"}",
-					"",
-					"utils.handlers.tenderCreateSuccessResponseHandler = (pm, postman) => {",
-					"    var responseJson = pm.response.json();",
-					"    var data = responseJson.data;",
-					"    var access = responseJson.access;",
-					"",
-					"    msg = `\\n`;",
-					"    msg += `Tender created:\\n`;",
-					"    msg += ` - id \\t\\t\\t\\t${data.id}\\n`;",
-					"    msg += ` - token \\t\\t\\t${access.token}\\n`;",
-					"    if (access.transfer) {",
-					"        msg += ` - transfer \\t\\t\\t${access.transfer}\\n`;",
-					"    }",
-					"    msg += ` - status \\t\\t\\t${data.status}\\n`;",
-					"    msg += ` - tenderID \\t\\t\\t${data.tenderID}\\n`;",
-					"    msg += ` - procurementMethodType \\t${data.procurementMethodType}\\n`;",
-					"    console.log(msg)",
-					"}",
-					"",
-					"utils.handlers.tenderGetSuccessResponseHandler = (pm, postman) => {",
-					"    var responseJson = pm.response.json();",
-					"    var data = responseJson.data;",
-					"    var access = responseJson.access;",
-					"",
-					"    msg = `\\n`;",
-					"    msg += `Tender:\\n`;",
-					"    msg += ` - id \\t\\t\\t\\t${data.id}\\n`;",
-					"    msg += ` - status \\t\\t\\t${data.status}\\n`;",
-					"    console.log(msg)",
-					"}",
-					""
+					"}"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "63ae2c7e-1724-4be0-9da2-c99c17361015",
+				"id": "ab4c045b-fabf-4b5f-b6b1-faca0e6d3849",
 				"type": "text/javascript",
 				"exec": [
 					""
