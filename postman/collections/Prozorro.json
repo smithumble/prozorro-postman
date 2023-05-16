@@ -8394,7 +8394,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "a0f0b711-54df-4df5-933f-4e4532f7383b",
+				"id": "7631e231-ea0b-496a-a0ed-c038ebcc6108",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -8497,7 +8497,9 @@
 					"        } else {",
 					"            setTimeoutFunc(() => {",
 					"                pm.sendRequest(pm.request, (error, response) => {",
+					"                    // TODO: find a better way",
 					"                    clone = Object.assign({}, pm);",
+					"                    clone.info = pm.info;",
 					"                    clone.request = pm.request;",
 					"                    clone.response = response;",
 					"                    clone.sendRequest = pm.sendRequest;",
@@ -8655,7 +8657,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "7859b499-6330-4915-a806-2794b4f3df9e",
+				"id": "5aaa0660-af61-4af7-8b16-af47f0bfe9ec",
 				"type": "text/javascript",
 				"exec": [
 					""
