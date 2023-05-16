@@ -8394,7 +8394,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "7631e231-ea0b-496a-a0ed-c038ebcc6108",
+				"id": "0fa3d5f7-2caa-4faa-8f50-50f5f4155b8b",
 				"type": "text/javascript",
 				"exec": [
 					"///////////////////////////////////////////////////",
@@ -8480,13 +8480,15 @@
 					"    return endDate.tz(timezone).format()",
 					"}",
 					"",
-					"utils.helpers.waitToDate = (pm, postman, statDate, endDate, success, setTimeoutFunc) => {",
+					"utils.helpers.waitToDate = (pm, postman, statDate, endDate, successCallback, setTimeoutFunc) => {",
 					"    var timeout = (endDate.getTime() - statDate.getTime());",
 					"    if (timeout < 0) {",
 					"        timeout = 0;",
 					"    }",
-					"    utils.handlers.waitToDateHandler(pm, statDate, endDate, timeout);",
-					"    setTimeoutFunc(success, timeout);",
+					"    utils.handlers.waitToDateHandler(pm, postman, statDate, endDate, timeout);",
+					"    setTimeoutFunc(() => {",
+					"        successCallback(pm, postman);",
+					"    }, timeout);",
 					"}",
 					"",
 					"utils.helpers.wait = (pm, postman, checkCallback, successCallback, setTimeoutFunc, delay) => {",
@@ -8657,7 +8659,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "5aaa0660-af61-4af7-8b16-af47f0bfe9ec",
+				"id": "63ae2c7e-1724-4be0-9da2-c99c17361015",
 				"type": "text/javascript",
 				"exec": [
 					""
