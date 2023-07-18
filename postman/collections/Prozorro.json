@@ -12343,6 +12343,70 @@
 					"response": []
 				},
 				{
+					"name": "Complaint patch pending (by bot)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57e6036a-ccac-4826-9c32-2d8f0d973186",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c6de100b-73b8-438d-8836-22007ed2cfe7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{API_BOT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"status\": \"pending\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/2.5/tenders/{{TENDER_ID}}/complaints/{{COMPLAINT_ID}}",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"2.5",
+								"tenders",
+								"{{TENDER_ID}}",
+								"complaints",
+								"{{COMPLAINT_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Complaint patch accepted",
 					"event": [
 						{
